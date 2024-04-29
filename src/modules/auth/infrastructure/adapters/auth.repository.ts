@@ -1,2 +1,1 @@
-export class RepositoryAuth {
-}
+export class RepositoryAuth {}
