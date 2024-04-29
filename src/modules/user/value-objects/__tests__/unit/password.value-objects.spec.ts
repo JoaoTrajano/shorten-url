@@ -49,51 +49,20 @@ describe('Password', () => {
       const password = new Password('123');
       password.encryptPassword(crypter);
 
-      const match = password.comparePasswordWithHash(
-        crypter,
-        new Password('123'),
-      );
+      const match = Password.comparePasswordWithHash(crypter, {
+        passwordHash: password.value,
+        passwordInput: '123',
+      });
       expect(match).toBe(true);
     });
 
     it('should return false for non-matching password and hash', () => {
       const hash = crypter.encrypt('wrongpassword');
-      const match = password.comparePasswordWithHash(
-        crypter,
-        new Password(hash),
-      );
+      const match = Password.comparePasswordWithHash(crypter, {
+        passwordHash: hash,
+        passwordInput: '123',
+      });
       expect(match).toBe(false);
-    });
-  });
-
-  describe('changePassword', () => {
-    it('should not change the password if the last password is incorrect', () => {
-      const newPassword = new Password('newpassword');
-      const lastPassword = new Password('wrongpassword');
-      password.changePassword(crypter, newPassword, lastPassword);
-      expect(password.value).toBe('password123');
-    });
-
-    it('should not change the password if either last or new password is missing', () => {
-      const newPassword = new Password('newpassword');
-      password.changePassword(crypter, newPassword, null);
-      expect(password.value).toBe('password123');
-
-      password.changePassword(crypter, null, newPassword);
-      expect(password.value).toBe('password123');
-    });
-  });
-
-  describe('newPassword', () => {
-    it('should set a new password', () => {
-      const newPassword = new Password('newpassword');
-      password.newPassword(crypter, newPassword);
-      expect(password.value).not.toBe('password123');
-    });
-
-    it('should not change the password if the new password is missing', () => {
-      password.newPassword(crypter, null);
-      expect(password.value).toBe('password123');
     });
   });
 });

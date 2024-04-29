@@ -7,5 +7,6 @@ import { UserController } from './presentation/controller/user.controller';
 @Module({
   providers: [PrismaService, UserService, GetByEmailAndPasswordUseCase],
   controllers: [UserController],
+  exports: [UserService],
 })
 export class UserModule {}

@@ -8,14 +8,10 @@ import { UserServiceInterface } from './user-service.interface';
 export class UserService implements UserServiceInterface {
   constructor(private prisma: PrismaService) {}
 
-  async getByEmailAndPassword(
-    email: string,
-    password: string,
-  ): Promise<UserEntity | null> {
+  async getByEmail(email: string): Promise<UserEntity | null> {
     const user = await this.prisma.user.findFirst({
       where: {
         email,
-        password,
       },
     });
 

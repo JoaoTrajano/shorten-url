@@ -23,10 +23,7 @@ export class GetByEmailAndPasswordUseCase {
       return null;
     }
 
-    const user = await this.userService.getByEmailAndPassword(
-      input.email,
-      input.password,
-    );
+    const user = await this.userService.getByEmail(input.email);
 
     return user ? UserMapper.toDomain(user) : null;
   }
