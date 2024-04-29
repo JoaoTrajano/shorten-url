@@ -2,12 +2,12 @@ import { v4 as uuid } from 'uuid';
 
 export class Entity {
   public id: string;
-  public createAt: Date;
-  public updateAt: Date;
+  public createdAt: Date;
+  public updatedAt: Date;
 
   constructor() {
     this.id = uuid();
-    this.createAt = new Date();
-    this.updateAt = new Date();
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
   }
 }
