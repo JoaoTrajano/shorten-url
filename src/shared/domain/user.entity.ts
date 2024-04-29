@@ -1,4 +1,4 @@
-import { v8 as uuid } from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 export class Entity {
   public id: string;
