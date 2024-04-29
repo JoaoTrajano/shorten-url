@@ -1,0 +1,3 @@
+describe('UrlEntity test', () => {
+  beforeEach(() => {});
+});
