@@ -5,13 +5,13 @@ describe('Entity', () => {
     const entity = new Entity();
 
     expect(entity.id).toBeDefined();
-    expect(entity.createAt).toBeInstanceOf(Date);
-    expect(entity.updateAt).toBeInstanceOf(Date);
+    expect(entity.createdAt).toBeInstanceOf(Date);
+    expect(entity.updatedAt).toBeInstanceOf(Date);
   });
 
   it('should have different createdAt and updatedAt timestamps', () => {
     const entity = new Entity();
-    entity.updateAt.setMinutes(entity.updateAt.getMinutes() + 1);
-    expect(entity.createAt.getTime()).not.toEqual(entity.updateAt.getTime());
+    entity.updatedAt.setMinutes(entity.updatedAt.getMinutes() + 1);
+    expect(entity.createdAt.getTime()).not.toEqual(entity.updatedAt.getTime());
   });
 });
