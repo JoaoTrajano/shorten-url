@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client';
-import { Password } from '../../value-objects/password';
 import { UserEntity } from '../../domain/entities/user.entity';
+import { Password } from '../../value-objects/password.value-object';
 
 export class UserMapper {
   static toDomain(schema: Prisma.UserGetPayload<Prisma.UserArgs>): UserEntity {
@@ -10,7 +10,7 @@ export class UserMapper {
       name: schema.name,
       password,
     });
-    // entity.email = schema.email ? new Email(schema.email) : null;
+    entity.email = schema.email;
     entity.id = schema.id;
     entity.createdAt = schema.createdAt;
     entity.updatedAt = schema.updatedAt;

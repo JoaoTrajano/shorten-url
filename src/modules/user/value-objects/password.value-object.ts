@@ -1,4 +1,4 @@
-import { BcryptCrypter } from '../infrastructure/adapters/crypter/crypter';
+import { BcryptCrypter } from '@/src/shared/infrastructure/adapters/crypter/crypter';
 
 export class Password {
   public value: string;

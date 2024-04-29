@@ -1,4 +1,4 @@
-import { BcryptCrypter } from '../../../infrastructure/adapters/crypter/crypter';
+import { BcryptCrypter } from '@/src/shared/infrastructure/adapters/crypter/crypter';
 import { Password } from '../../password.value-object';
 
 describe('Password', () => {
