@@ -1,5 +1,5 @@
 import { BcryptCrypter } from '../../../infrastructure/adapters/crypter/crypter';
-import { Password } from '../../password';
+import { Password } from '../../password.value-object';
 
 describe('Password', () => {
   let crypter: BcryptCrypter;
