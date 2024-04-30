@@ -10,8 +10,8 @@ import { BcryptCrypter } from '@/shared/infrastructure/adapters/crypter/bcrypt-c
     UserModule,
     JwtModule.register({
       global: true,
-      secret: '5ca25858-8fc1-41e4-91a8-afc5a71959f1',
-      signOptions: { expiresIn: '2h' },
+      secret: String(process.env.JWT_SECRET),
+      signOptions: { expiresIn: String(process.env.JWT_EXPIRES_IN) },
     }),
   ],
   providers: [BcryptCrypter, AuthService],

@@ -4,6 +4,14 @@ import { UserModule } from './modules/user/user.module';
 import { ShortUrlModule } from './modules/url/short-url.module';
 
 @Module({
-  imports: [ShortUrlModule, AuthModule, UserModule],
+  imports: [
+    ConfigModule.forRoot({
+      ignoreEnvFile: true,
+      isGlobal: true,
+    }),
+    ShortUrlModule,
+    AuthModule,
+    UserModule,
+  ],
 })
 export class AppModule {}
