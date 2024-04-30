@@ -35,7 +35,7 @@ export class ShortUrlEntity extends Entity {
   }
 
   extractDomain(): void | null {
-    if (!this.validURL(this.urlOriginal)) return null;
+    if (!this.validURL(this.urlOriginal)) throw Error('URL Inválida!');
 
     const regex = /^(https?:\/\/[^\/]+)\/?.*$/i;
     const matches = this.urlOriginal.match(regex);
@@ -43,12 +43,12 @@ export class ShortUrlEntity extends Entity {
     if (matches && matches[1]) {
       this.domain = matches[1];
     } else {
-      return null;
+      throw new Error('URL Inválida!');
     }
   }
 
-  extractPath(): void | null {
-    if (!this.validURL(this.urlOriginal)) return null;
+  extractPath(): void {
+    if (!this.validURL(this.urlOriginal)) throw Error('URL Inválida!');
 
     const regex = /^https?:\/\/[^\/]+(\/.*)$/i;
     const matches = this.urlOriginal.match(regex);
@@ -56,7 +56,7 @@ export class ShortUrlEntity extends Entity {
     if (matches && matches[1]) {
       this.path = matches[1];
     } else {
-      return null;
+      throw new Error('');
     }
   }
 

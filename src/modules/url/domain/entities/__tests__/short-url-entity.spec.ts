@@ -46,8 +46,9 @@ describe('ShortUrlEntity', () => {
 
   describe('shorten', () => {
     it('should generate a short URL', () => {
-      const originalUrl = shortUrlEntity.path;
-      expect(shortUrlEntity.path).not.toEqual(originalUrl);
+      expect(shortUrlEntity.getShortUrl()).not.toEqual(
+        shortUrlEntity.getUrlOriginal(),
+      );
     });
   });
 
@@ -58,9 +59,8 @@ describe('ShortUrlEntity', () => {
     });
 
     it('should return null if the URL is invalid', () => {
-      shortUrlEntity.path = 'invalid-url';
-      shortUrlEntity.extractDomain();
-      expect(shortUrlEntity.domain).toBeNull();
+      shortUrlEntity.urlOriginal = 'invalid-url';
+      expect(() => shortUrlEntity.extractPath()).toThrow('URL Inválida!');
     });
   });
 
@@ -71,9 +71,8 @@ describe('ShortUrlEntity', () => {
     });
 
     it('should return null if the URL is invalid', () => {
-      shortUrlEntity.path = 'invalid-url';
-      shortUrlEntity.extractPath();
-      expect(shortUrlEntity.path).toBeNull();
+      shortUrlEntity.urlOriginal = 'invalid-url';
+      expect(() => shortUrlEntity.extractPath()).toThrow('URL Inválida!');
     });
   });
 
