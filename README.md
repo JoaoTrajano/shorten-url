@@ -12,6 +12,20 @@ Caso haja dúvidas, é só acessar a documentação através do /doc:
 http://localhost:3000/doc
 ```
 
+A API retorna a URL sem precisar de autenticação. No entanto, para acessar as URLs geradas por você e usar outras funcionalidades, é necessário estar autenticado.
+
+Se você não tiver um usuário, pode criá-lo por meio da rota:
+
+```
+http://localhost:3000/doc
+```
+
+e em seguida:
+
+```
+POST /user
+```
+
 ## Pré-requisitos
 
 Certifique-se de ter o seguinte instalado em sua máquina:
