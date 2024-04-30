@@ -6,10 +6,10 @@ Este é um projeto desenvolvido com o framework Nest.js. O projeto visa a contru
 
 ## Documentação
 
-Caso haja dúvidas, é só acessar a documentação através do /docs:
+Caso haja dúvidas, é só acessar a documentação através do /doc:
 
 ```
-http://localhost:3000/docs
+http://localhost:3000/doc
 ```
 
 ## Pré-requisitos
