@@ -1,4 +1,4 @@
-import { Entity } from '@/src/shared/domain/entities/user.entity';
+import { Entity } from '@/shared/domain/entities/user.entity';
 
 export type UserEntityProps = {
   name: string;

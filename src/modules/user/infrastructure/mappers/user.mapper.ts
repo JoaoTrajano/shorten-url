@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client';
-import { UserEntity } from '../../domain/entities/user.entity';
-import { Password } from '../../value-objects/password.value-object';
 import { User as UserSchema } from '@prisma/client';
+import { Password } from '../../value-objects/password.value-object';
+import { UserEntity } from '../../domain/entities/user.entity';
 
 export class UserMapper {
   static toDomain(schema: Prisma.UserGetPayload<Prisma.UserArgs>): UserEntity {

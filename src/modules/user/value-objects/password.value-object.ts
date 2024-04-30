@@ -1,4 +1,4 @@
-import { BcryptCrypter } from '@/src/shared/infrastructure/adapters/crypter/crypter';
+import { BcryptCrypter } from '@/shared/infrastructure/adapters/crypter/bcrypt-crypter';
 
 export type ComparePasswordWithHashParams = {
   passwordInput: string;

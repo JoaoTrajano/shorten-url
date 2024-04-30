@@ -1,7 +1,7 @@
-import { UserService } from '@/src/modules/user/application/services/user.service';
-import { Password } from '@/src/modules/user/value-objects/password.value-object';
-import { ApplicationOutput } from '@/src/shared/application/output/application-output';
-import { BcryptCrypter } from '@/src/shared/infrastructure/adapters/crypter/crypter';
+import { UserService } from '@/modules/user/application/services/user.service';
+import { Password } from '@/modules/user/value-objects/password.value-object';
+import { ApplicationOutput } from '@/shared/application/output/application-output';
+import { BcryptCrypter } from '@/shared/infrastructure/adapters/crypter/bcrypt-crypter';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 

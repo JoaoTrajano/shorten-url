@@ -18,12 +18,12 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "prisma:generate": "npx prisma generate --schema=./src/shared/infrastructure/database/postgres/prisma/schema.prisma",
-    "prisma:format": "npx prisma format --schema=./src/shared/infrastructure/database/postgres/prisma/schema.prisma",
-    "prisma:db:push": "npx prisma db push --schema=./src/shared/infrastructure/database/postgres/prisma/schema.prisma",
-    "prisma:db:pull": "npx prisma db pull --schema=./src/shared/infrastructure/database/postgres/prisma/schema.prisma",
-    "prisma:db:reset": "npx prisma db reset --schema=./src/shared/infrastructure/database/postgres/prisma/schema.prisma",
-    "prisma:db:deploy": "npx prisma db push --schema=./dist/shared/infrastructure/database/postgres/prisma/schema.prisma"
+    "prisma:generate": "npx prisma generate --schema=./src/shared/infrastructure/adapters/database/postgres/prisma/schema.prisma",
+    "prisma:format": "npx prisma format --schema=./src/shared/infrastructure/adapters/database/postgres/prisma/schema.prisma",
+    "prisma:db:push": "npx prisma db push --schema=./src/shared/infrastructure/adapters/database/postgres/prisma/schema.prisma",
+    "prisma:db:pull": "npx prisma db pull --schema=./src/shared/infrastructure/adapters/database/postgres/prisma/schema.prisma",
+    "prisma:db:reset": "npx prisma db reset --schema=./src/shared/infrastructure/adapters/database/postgres/prisma/schema.prisma",
+    "prisma:db:deploy": "npx prisma db push --schema=./dist/shared/infrastructure/adapters/database/postgres/prisma/schema.prisma"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",

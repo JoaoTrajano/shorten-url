@@ -3,7 +3,7 @@ import { AuthController } from './presentation/controller/auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { UserModule } from '../user/user.module';
 import { AuthService } from './application/services/auth.service';
-import { BcryptCrypter } from '@/src/shared/infrastructure/adapters/crypter/crypter';
+import { BcryptCrypter } from '@/shared/infrastructure/adapters/crypter/bcrypt-crypter';
 
 @Module({
   imports: [
