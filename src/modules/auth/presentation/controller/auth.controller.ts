@@ -6,7 +6,7 @@ import { LoginDTO } from '../../dtos/login.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('/')
+  @Post('/login')
   async login(@Body() body: LoginDTO) {
     const output = await this.authService.signIn({ ...body });
     return output.toHttpResponse();

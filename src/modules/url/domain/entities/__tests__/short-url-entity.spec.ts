@@ -19,9 +19,9 @@ describe('ShortUrlEntity', () => {
 
   beforeEach(() => {
     shortUrlEntity = new ShortUrlEntity({
-      url: 'https://example.com/teste',
-      user: mockUser,
+      urlOriginal: 'https://example.com/teste',
     });
+    shortUrlEntity.user = mockUser;
   });
 
   describe('Password', () => {

@@ -38,4 +38,13 @@ export class AuthService {
 
     return new ApplicationOutput({ accessToken });
   }
+
+  async getUserAuthenticate(token: string) {
+    const userId = await this.jwtService.verifyAsync(token);
+
+    const user = await this.userService.getById(userId);
+    if (!user) return null;
+
+    return new ApplicationOutput({ user });
+  }
 }

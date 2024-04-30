@@ -16,6 +16,6 @@ import { BcryptCrypter } from '@/shared/infrastructure/adapters/crypter/bcrypt-c
   ],
   providers: [BcryptCrypter, AuthService],
   controllers: [AuthController],
-  exports: [AuthModule],
+  exports: [AuthService],
 })
 export class AuthModule {}

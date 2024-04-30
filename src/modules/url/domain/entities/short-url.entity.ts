@@ -3,23 +3,22 @@ import { Entity } from '@/shared/domain/entities/user.entity';
 import { ShortURL } from '@/shared/infrastructure/adapters/shortURL/short-url';
 
 export type ShortUrlEntityProps = {
-  user: UserEntity;
-  url: string;
-  domain?: string;
-  path?: string;
+  urlOriginal: string;
 };
 
 export class ShortUrlEntity extends Entity {
   public user: UserEntity;
   public domain: string;
   public path: string;
-  public url: string;
+  public urlOriginal: string;
+  public urlShort: string;
 
-  constructor(props: ShortUrlEntityProps) {
+  constructor({ urlOriginal }: ShortUrlEntityProps) {
     super();
-    Object.assign(this, props);
+    this.urlOriginal = urlOriginal;
     this.extractDomain();
     this.extractPath();
+    this.shorten();
   }
 
   validURL(url: string): boolean {
@@ -27,15 +26,15 @@ export class ShortUrlEntity extends Entity {
     return regex.test(url);
   }
 
-  private shorten(): void {
-    this.path = ShortURL.shorten({});
+  public shorten(): void {
+    this.urlShort = `${this.domain}/${ShortURL.shorten({})}`;
   }
 
   extractDomain(): void | null {
-    if (!this.validURL(this.url)) return null;
+    if (!this.validURL(this.urlOriginal)) return null;
 
     const regex = /^(https?:\/\/[^\/]+)\/?.*$/i;
-    const matches = this.url.match(regex);
+    const matches = this.urlOriginal.match(regex);
 
     if (matches && matches[1]) {
       this.domain = matches[1];
@@ -45,10 +44,10 @@ export class ShortUrlEntity extends Entity {
   }
 
   extractPath(): void | null {
-    if (!this.validURL(this.url)) return null;
+    if (!this.validURL(this.urlOriginal)) return null;
 
     const regex = /^https?:\/\/[^\/]+(\/.*)$/i;
-    const matches = this.url.match(regex);
+    const matches = this.urlOriginal.match(regex);
 
     if (matches && matches[1]) {
       this.path = matches[1];
@@ -57,12 +56,11 @@ export class ShortUrlEntity extends Entity {
     }
   }
 
-  getUrlOriginal() {
-    return this.url;
+  getUrlOriginal(): string {
+    return this.urlOriginal;
   }
 
-  getShortUrl() {
-    this.shorten();
-    return `${this.domain}/${this.path}`;
+  getShortUrl(): string {
+    return this.urlShort;
   }
 }

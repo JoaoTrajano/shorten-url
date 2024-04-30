@@ -2,7 +2,7 @@ import { Prisma } from '@prisma/client';
 import { ShortUrls as ShortUrlsSchema } from '@prisma/client';
 import { ShortUrlEntity } from '../../domain/entities/short-url.entity';
 
-export class UrlsMapper {
+export class ShortUrlMapper {
   static toDomain(
     schema: Prisma.ShortUrlsGetPayload<Prisma.ShortUrlsArgs>,
   ): ShortUrlEntity {
@@ -11,11 +11,10 @@ export class UrlsMapper {
     ).user;
 
     const entity = new ShortUrlEntity({
-      user,
-      domain: schema.domain,
-      path: schema.path,
-      url: schema.path,
+      urlOriginal: schema.urlOriginal,
     });
+
+    if (user) entity.user = user;
     entity.id = schema.id;
     entity.createdAt = schema.createdAt;
     entity.updatedAt = schema.updatedAt;
@@ -26,10 +25,11 @@ export class UrlsMapper {
   static toPersistence(shortUrlEntity: ShortUrlEntity): ShortUrlsSchema {
     return {
       id: shortUrlEntity.id,
-      idUser: shortUrlEntity.user.id,
+      idUser: shortUrlEntity.user ? shortUrlEntity.user.id : null,
       domain: shortUrlEntity.domain,
       path: shortUrlEntity.path,
-      url: shortUrlEntity.url,
+      urlOriginal: shortUrlEntity.urlOriginal,
+      urlShort: shortUrlEntity.urlShort,
       createdAt: shortUrlEntity.createdAt,
       updatedAt: shortUrlEntity.updatedAt,
     };

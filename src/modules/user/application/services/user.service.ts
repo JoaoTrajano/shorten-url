@@ -8,6 +8,16 @@ import { PrismaService } from '@/shared/infrastructure/adapters/database/postgre
 export class UserService implements UserServiceInterface {
   constructor(private prisma: PrismaService) {}
 
+  async getById(id: string): Promise<UserEntity | null> {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return user ? UserMapper.toDomain(user) : null;
+  }
+
   async getByEmail(email: string): Promise<UserEntity | null> {
     const user = await this.prisma.user.findFirst({
       where: {
