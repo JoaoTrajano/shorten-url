@@ -4,7 +4,7 @@ import { ShortUrlService } from '../services/short-url.service';
 import { ApplicationOutput } from '@/shared/application/output/application-output';
 
 export type GetUrlOriginByUrlShortUseCaseInput = {
-  urlOrigin: string;
+  urlShort: string;
 };
 
 @Injectable()
@@ -14,10 +14,13 @@ export class GetUrlOriginByUrlShortUseCase {
   async execute(
     input: GetUrlOriginByUrlShortUseCaseInput,
   ): Promise<ApplicationOutput<{ shortUrl: ShortUrlEntity }>> {
-    if (!input.urlOrigin) throw new BadGatewayException();
+    if (!input.urlShort) throw new BadGatewayException();
 
-    const shortUrl = await this.shortUrlService.getByURLShort(input.urlOrigin);
+    const shortUrl = await this.shortUrlService.getByURLShort(input.urlShort);
     if (!shortUrl) throw new BadGatewayException();
+
+    shortUrl.totalClicks++;
+    await this.shortUrlService.update(shortUrl);
 
     return new ApplicationOutput({ shortUrl });
   }

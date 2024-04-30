@@ -4,10 +4,22 @@ import { ShortURLController } from './presentation/controller/short-url.controll
 import { ShortUrlService } from './application/services/short-url.service';
 import { AuthModule } from '../auth/auth.module';
 import { GenerateShortUrlUseCase } from './application/usecases/generate-short-url.usecase';
+import {
+  GetUrlOriginByUrlShortUseCase,
+  GetUrlsByUserIdUseCase,
+  UpdateUrlUseCase,
+} from './application/usecases';
 
 @Module({
   imports: [AuthModule],
-  providers: [PrismaService, ShortUrlService, GenerateShortUrlUseCase],
+  providers: [
+    PrismaService,
+    ShortUrlService,
+    UpdateUrlUseCase,
+    GetUrlsByUserIdUseCase,
+    GenerateShortUrlUseCase,
+    GetUrlOriginByUrlShortUseCase,
+  ],
   controllers: [ShortURLController],
   exports: [ShortUrlService],
 })

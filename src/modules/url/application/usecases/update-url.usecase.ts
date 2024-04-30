@@ -7,6 +7,7 @@ export type UpdateUrlUseCaseInput = {
   id: string;
   urlOrigin?: string;
   totalClicks?: number;
+  deleteAt?: Date;
 };
 
 @Injectable()
@@ -22,8 +23,8 @@ export class UpdateUrlUseCase {
     if (!shortUrl) throw new BadGatewayException();
 
     if (input.urlOrigin) shortUrl.updateUrlOrigin(input.urlOrigin);
-
     if (input.totalClicks) shortUrl.totalClicks = input.totalClicks;
+    if (input.deleteAt) shortUrl.deletedAt = input.deleteAt;
 
     const url = await this.shortUrlService.update(shortUrl);
 

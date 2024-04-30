@@ -15,7 +15,13 @@ export class ShortUrlMapper {
     });
 
     if (user) entity.user = user;
+
     entity.id = schema.id;
+    entity.domain = schema.domain;
+    entity.path = schema.path;
+    entity.urlShort = schema.urlShort;
+    entity.totalClicks = schema.totalClicks;
+    entity.deletedAt = schema.deletedAt;
     entity.createdAt = schema.createdAt;
     entity.updatedAt = schema.updatedAt;
 

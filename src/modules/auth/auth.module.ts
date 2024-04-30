@@ -11,7 +11,7 @@ import { BcryptCrypter } from '@/shared/infrastructure/adapters/crypter/bcrypt-c
     JwtModule.register({
       global: true,
       secret: '5ca25858-8fc1-41e4-91a8-afc5a71959f1',
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '2h' },
     }),
   ],
   providers: [BcryptCrypter, AuthService],

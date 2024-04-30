@@ -31,7 +31,7 @@ export class ShortUrlEntity extends Entity {
   }
 
   public shorten(): void {
-    this.urlShort = `${this.domain}/${ShortURL.shorten({})}`;
+    this.urlShort = ShortURL.shorten({});
   }
 
   extractDomain(): void | null {
@@ -65,7 +65,7 @@ export class ShortUrlEntity extends Entity {
   }
 
   getShortUrl(): string {
-    return this.urlShort;
+    return `${this.domain}/${this.urlShort}`;
   }
 
   updateUrlOrigin(urlOrigin: string) {
