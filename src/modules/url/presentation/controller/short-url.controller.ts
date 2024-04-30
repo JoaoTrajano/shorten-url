@@ -38,9 +38,9 @@ export class ShortURLController {
     return output.toHttpResponse();
   }
 
-  @Get('/redirect/:urlShort')
+  @Post('/redirect')
   @Redirect()
-  async redirectUrlOrigin(@Param('urlShort') urlShort: string) {
+  async redirectUrlOrigin(@Body('urlShort') urlShort: string) {
     const output = await this.getUrlOriginByUrlShortUseCase.execute({
       urlShort,
     });
