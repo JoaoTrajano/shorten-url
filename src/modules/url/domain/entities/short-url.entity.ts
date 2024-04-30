@@ -35,7 +35,6 @@ export class ShortUrlEntity extends Entity {
     if (!this.validURL(this.url)) return null;
 
     const regex = /^(https?:\/\/[^\/]+)\/?.*$/i;
-
     const matches = this.url.match(regex);
 
     if (matches && matches[1]) {
@@ -49,7 +48,6 @@ export class ShortUrlEntity extends Entity {
     if (!this.validURL(this.url)) return null;
 
     const regex = /^https?:\/\/[^\/]+(\/.*)$/i;
-
     const matches = this.url.match(regex);
 
     if (matches && matches[1]) {

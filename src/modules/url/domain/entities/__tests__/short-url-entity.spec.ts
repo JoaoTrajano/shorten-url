@@ -47,7 +47,6 @@ describe('ShortUrlEntity', () => {
   describe('shorten', () => {
     it('should generate a short URL', () => {
       const originalUrl = shortUrlEntity.path;
-      console.log(shortUrlEntity.path);
       expect(shortUrlEntity.path).not.toEqual(originalUrl);
     });
   });
@@ -80,7 +79,6 @@ describe('ShortUrlEntity', () => {
 
   describe('getFullLink', () => {
     it('should return the full link', () => {
-      console.log(shortUrlEntity.getUrlOriginal());
       expect(shortUrlEntity.getUrlOriginal()).toEqual(
         'https://example.com/teste',
       );
@@ -89,7 +87,9 @@ describe('ShortUrlEntity', () => {
 
   describe('getCustomUrl', () => {
     it('should return the full custom link', () => {
-      console.log(shortUrlEntity.getShortUrl());
+      expect(shortUrlEntity.getShortUrl()).not.toEqual(
+        shortUrlEntity.getUrlOriginal(),
+      );
     });
   });
 });
