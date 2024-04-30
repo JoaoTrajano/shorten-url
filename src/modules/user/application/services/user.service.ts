@@ -7,6 +7,14 @@ import { PrismaService } from '@/shared/infrastructure/adapters/database/postgre
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
+  async create(user: UserEntity): Promise<UserEntity | null> {
+    const userCreated = await this.prisma.user.create({
+      data: UserMapper.toPersistence(user),
+    });
+
+    return UserMapper.toDomain(userCreated);
+  }
+
   async getById(id: string): Promise<UserEntity | null> {
     const user = await this.prisma.user.findUnique({
       where: {

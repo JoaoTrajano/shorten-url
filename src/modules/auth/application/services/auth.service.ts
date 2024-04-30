@@ -34,9 +34,13 @@ export class AuthService {
     )
       throw new UnauthorizedException('E-mail ou Senha estão incorretos!');
 
-    const accessToken = await this.jwtService.signAsync({ id: user.id });
+    const token = await this.jwtService.signAsync({ id: user.id });
 
-    return new ApplicationOutput({ accessToken });
+    return new ApplicationOutput({
+      type: 'Bearer',
+      token,
+      accessToken: `Bearer ${token}`,
+    });
   }
 
   async getUserAuthenticate(token: string) {
