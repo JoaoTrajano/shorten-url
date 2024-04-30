@@ -30,6 +30,8 @@ export class ShortUrlMapper {
       path: shortUrlEntity.path,
       urlOriginal: shortUrlEntity.urlOriginal,
       urlShort: shortUrlEntity.urlShort,
+      totalClicks: shortUrlEntity.totalClicks,
+      deletedAt: shortUrlEntity.deletedAt ? shortUrlEntity.deletedAt : null,
       createdAt: shortUrlEntity.createdAt,
       updatedAt: shortUrlEntity.updatedAt,
     };

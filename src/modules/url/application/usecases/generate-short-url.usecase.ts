@@ -21,7 +21,9 @@ export class GenerateShortUrlUseCase {
     input: GenerateShortUrlUseCaseInput,
   ): Promise<ApplicationOutput<{ shortUrl: ShortUrlEntity }>> {
     if (!input.url) throw new BadGatewayException();
+
     let user: UserEntity | null = null;
+
     const shortUrl = new ShortUrlEntity({ urlOriginal: input.url });
     shortUrl.shorten();
 

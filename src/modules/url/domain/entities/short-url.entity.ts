@@ -12,10 +12,14 @@ export class ShortUrlEntity extends Entity {
   public path: string;
   public urlOriginal: string;
   public urlShort: string;
+  public totalClicks: number;
+  public deletedAt: Date | null;
 
   constructor({ urlOriginal }: ShortUrlEntityProps) {
     super();
     this.urlOriginal = urlOriginal;
+    this.totalClicks = 0;
+    this.deletedAt = null;
     this.extractDomain();
     this.extractPath();
     this.shorten();
@@ -62,5 +66,12 @@ export class ShortUrlEntity extends Entity {
 
   getShortUrl(): string {
     return this.urlShort;
+  }
+
+  updateUrlOrigin(urlOrigin: string) {
+    this.urlOriginal = urlOrigin;
+    this.extractDomain();
+    this.extractPath();
+    this.shorten();
   }
 }

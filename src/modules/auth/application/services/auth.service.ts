@@ -40,11 +40,19 @@ export class AuthService {
   }
 
   async getUserAuthenticate(token: string) {
-    const userId = await this.jwtService.verifyAsync(token);
+    const isValid = await this.validToken(token);
+    if (!isValid) return null;
 
-    const user = await this.userService.getById(userId);
+    const { id } = await this.jwtService.verifyAsync(isValid);
+
+    const user = await this.userService.getById(id);
     if (!user) return null;
 
     return new ApplicationOutput({ user });
+  }
+
+  private validToken(code: string): string | undefined {
+    const [type, token] = code.split(' ') ?? [];
+    return type === 'Bearer' ? token : undefined;
   }
 }
