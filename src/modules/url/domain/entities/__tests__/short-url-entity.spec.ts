@@ -19,7 +19,6 @@ describe('ShortUrlEntity', () => {
 
   beforeEach(() => {
     shortUrlEntity = new ShortUrlEntity({
-      domain: 'example.com',
       url: 'https://example.com/teste',
       user: mockUser,
     });
@@ -48,7 +47,7 @@ describe('ShortUrlEntity', () => {
   describe('shorten', () => {
     it('should generate a short URL', () => {
       const originalUrl = shortUrlEntity.path;
-      shortUrlEntity.shorten();
+      console.log(shortUrlEntity.path);
       expect(shortUrlEntity.path).not.toEqual(originalUrl);
     });
   });
@@ -81,7 +80,16 @@ describe('ShortUrlEntity', () => {
 
   describe('getFullLink', () => {
     it('should return the full link', () => {
-      expect(shortUrlEntity.getUrl()).toEqual('https://example.com/teste');
+      console.log(shortUrlEntity.getUrlOriginal());
+      expect(shortUrlEntity.getUrlOriginal()).toEqual(
+        'https://example.com/teste',
+      );
+    });
+  });
+
+  describe('getCustomUrl', () => {
+    it('should return the full custom link', () => {
+      console.log(shortUrlEntity.getShortUrl());
     });
   });
 });

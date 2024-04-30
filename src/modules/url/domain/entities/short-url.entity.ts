@@ -17,11 +17,9 @@ export class ShortUrlEntity extends Entity {
 
   constructor(props: ShortUrlEntityProps) {
     super();
-    Object.assign(this, {
-      ...props,
-      domain: this.extractDomain(),
-      path: this.extractPath(),
-    });
+    Object.assign(this, props);
+    this.extractDomain();
+    this.extractPath();
   }
 
   validURL(url: string): boolean {
@@ -29,8 +27,8 @@ export class ShortUrlEntity extends Entity {
     return regex.test(url);
   }
 
-  shorten(): void {
-    this.path = ShortURL.shorten();
+  private shorten(): void {
+    this.path = ShortURL.shorten({});
   }
 
   extractDomain(): void | null {
@@ -61,7 +59,12 @@ export class ShortUrlEntity extends Entity {
     }
   }
 
-  getUrl() {
+  getUrlOriginal() {
     return this.url;
+  }
+
+  getShortUrl() {
+    this.shorten();
+    return `${this.domain}/${this.path}`;
   }
 }
